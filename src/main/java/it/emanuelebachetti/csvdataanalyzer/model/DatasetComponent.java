@@ -3,7 +3,7 @@ package it.emanuelebachetti.csvdataanalyzer.model;
 /**
  * The DatasetComponent interface represents a component in a composite
  * structure of a dataset. It defines common operations for both
- * individual records and collections of records (datasets).
+ * individual Records and collections of Records (datasets).
  */
 public interface DatasetComponent {
 

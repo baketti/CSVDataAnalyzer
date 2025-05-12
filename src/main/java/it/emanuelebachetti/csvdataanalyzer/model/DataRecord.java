@@ -3,28 +3,28 @@ package it.emanuelebachetti.csvdataanalyzer.model;
 import java.util.List;
 
 /**
- * The Record class represents a leaf node in the composite pattern.
+ * The DataRecord class represents a leaf node in the composite pattern.
  * It implements the DatasetComponent interface and provides
- * operations for an individual record (a CSV row).
+ * operations for an individual DataRecord (a CSV row).
  */
-public class Record implements DatasetComponent {
+public class DataRecord implements DatasetComponent {
 
     /**
-     * The fields of the record (columns).
+     * The fields of the DataRecord (columns).
      */
     private List<String> fields;
 
     /**
-     * Creates a new Record with the specified fields.
+     * Creates a new DataRecord with the specified fields.
      * 
-     * @param fields the list of values in the record
+     * @param fields the list of values in the Record
      */
-    public Record(List<String> fields) {
+    public DataRecord(List<String> fields) {
         this.fields = fields;
     }
 
     /**
-     * Displays the content of the record.
+     * Displays the content of the Record.
      */
     @Override
     public void display() {
@@ -32,7 +32,7 @@ public class Record implements DatasetComponent {
     }
 
     /**
-     * Returns the list of fields in the record.
+     * Returns the list of fields in the Record.
      * 
      * @return list of field values
      */
@@ -41,7 +41,7 @@ public class Record implements DatasetComponent {
     }
 
     /**
-     * Retrieves a value at the specified index in the record.
+     * Retrieves a value at the specified index in the Record.
      * 
      * @param index the field index
      * @return the value at that index

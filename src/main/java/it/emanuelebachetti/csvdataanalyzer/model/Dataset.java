@@ -19,7 +19,7 @@ public class Dataset implements DatasetComponent {
     private List<DatasetComponent> components = new ArrayList<>();
 
     /**
-     * Adds a component (Record or nested Dataset) to the dataset.
+     * Adds a component (DataRecord or nested Dataset) to the dataset.
      * 
      * @param component the component to add
      */
@@ -28,7 +28,7 @@ public class Dataset implements DatasetComponent {
     }
 
     /**
-     * Creates an iterator to traverse the dataset and access records.
+     * Creates an iterator to traverse the dataset and access Records.
      *
      * @return a {@code RecordIterator} for this dataset
      */

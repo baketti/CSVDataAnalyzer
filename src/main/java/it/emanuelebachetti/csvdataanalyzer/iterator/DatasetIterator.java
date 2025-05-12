@@ -3,6 +3,7 @@ package it.emanuelebachetti.csvdataanalyzer.iterator;
 import java.util.List;
 
 import it.emanuelebachetti.csvdataanalyzer.exception.ExceptionManager;
+import it.emanuelebachetti.csvdataanalyzer.model.DataRecord;
 import it.emanuelebachetti.csvdataanalyzer.model.DatasetComponent;
 
 /**
@@ -46,9 +47,9 @@ public class DatasetIterator implements RecordIterator {
      * @return the next {@code Record}
      */
     @Override
-    public Record next() {
+    public DataRecord next() {
         try {
-            return (Record) components.get(currentIndex++);
+            return (DataRecord) components.get(currentIndex++);
         } catch (ClassCastException e) {
             ExceptionManager.handleException(e, "l’iterazione sul Dataset");
             return null; // mai raggiunto, ma richiesto dal compilatore
