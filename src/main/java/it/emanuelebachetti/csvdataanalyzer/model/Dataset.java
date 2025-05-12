@@ -3,6 +3,9 @@ package it.emanuelebachetti.csvdataanalyzer.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.emanuelebachetti.csvdataanalyzer.iterator.DatasetIterator;
+import it.emanuelebachetti.csvdataanalyzer.iterator.RecordIterator;
+
 /**
  * The Dataset class represents a composite component in the composite pattern.
  * It implements the DatasetComponent interface and can contain
@@ -22,6 +25,15 @@ public class Dataset implements DatasetComponent {
      */
     public void addComponent(DatasetComponent component) {
         components.add(component);
+    }
+
+    /**
+     * Creates an iterator to traverse the dataset and access records.
+     *
+     * @return a {@code RecordIterator} for this dataset
+     */
+    public RecordIterator createIterator() {
+        return new DatasetIterator(components);
     }
 
     /**
