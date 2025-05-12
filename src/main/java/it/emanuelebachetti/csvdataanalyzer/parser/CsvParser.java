@@ -3,6 +3,7 @@ package it.emanuelebachetti.csvdataanalyzer.parser;
 import java.io.*;
 import java.util.*;
 
+import it.emanuelebachetti.csvdataanalyzer.exception.ExceptionManager;
 import it.emanuelebachetti.csvdataanalyzer.model.Record;
 
 public class CsvParser implements Parser<List<Record>> {
@@ -22,6 +23,8 @@ public class CsvParser implements Parser<List<Record>> {
                 String[] fields = line.split(delimiter);
                 records.add(new Record(Arrays.asList(fields)));
             }
+        } catch (IOException | ArrayIndexOutOfBoundsException e) {
+            ExceptionManager.handleException(e, "il parsing del file CSV");
         }
 
         return records;
