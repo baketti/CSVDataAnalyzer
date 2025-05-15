@@ -16,6 +16,6 @@ public class TransactionRecordValidatorBuilder {
         amountValidator.setNext(currencyValidator);
         currencyValidator.setNext(statusValidator);
 
-        return idValidator; // punto iniziale della catena
+        return idValidator;
     }
 }
