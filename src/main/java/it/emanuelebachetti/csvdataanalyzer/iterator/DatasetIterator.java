@@ -33,10 +33,10 @@ public class DatasetIterator implements RecordIterator {
     @Override
     public boolean hasNext() {
         while (currentIndex < components.size()) {
-            if (components.get(currentIndex) instanceof Record) {
+            if (components.get(currentIndex) instanceof DataRecord) {
                 return true;
             }
-            currentIndex++;
+            this.currentIndex++;
         }
         return false;
     }

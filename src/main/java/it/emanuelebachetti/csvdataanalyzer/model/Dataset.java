@@ -17,6 +17,7 @@ public class Dataset implements DatasetComponent {
      * The list of components in the dataset.
      */
     private List<DatasetComponent> components = new ArrayList<>();
+    private List<String> headerFields;
 
     /**
      * Adds a component (DataRecord or nested Dataset) to the dataset.
@@ -45,12 +46,20 @@ public class Dataset implements DatasetComponent {
         components.remove(component);
     }
 
+    public List<String> getHeaderFields() {
+        return headerFields;
+    }
+
+    public void setHeaderFields(List<String> headerFields) {
+        this.headerFields = headerFields;
+    }
+
     /**
      * Displays the contents of the dataset and its components.
      */
     @Override
     public void display() {
-        System.out.println("Dataset:");
+        System.out.println(this.getHeaderFields().toString());
         for (DatasetComponent component : components) {
             component.display();
         }

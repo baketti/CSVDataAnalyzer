@@ -10,8 +10,8 @@ public interface RecordIterator {
     /**
      * Checks if there are more Records in the collection.
      *
-     * @return {@code true} if more Records are available, {@code false} oth
-     *         rwise
+     * @return {@code true} if more Records are available, {@code false} otherwise
+     * 
      */
     boolean hasNext();
 

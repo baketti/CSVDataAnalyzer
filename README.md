@@ -31,7 +31,7 @@ src/
 ## 💡 Design Patterns Used
 
 ### 🏭 Factory Method Pattern
-- **Classes**: `ParserFactory`, `Parser<T>`, `CsvParser`
+- **Classes**: `ParserFactory`, `Parser<T>`, `CSVParser`
 - **Purpose**: Create parsers dynamically based on file type (`csv`, extensible to `json`, `xml`, etc.)
 
 ### 🌿 Composite Pattern

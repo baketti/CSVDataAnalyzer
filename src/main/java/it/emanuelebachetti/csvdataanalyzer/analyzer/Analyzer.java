@@ -21,7 +21,6 @@ public class Analyzer {
     public static double sum(Dataset dataset, int columnIndex) {
         double total = 0;
         RecordIterator iterator = dataset.createIterator();
-
         while (iterator.hasNext()) {
             DataRecord record = iterator.next();
             try {
@@ -42,7 +41,6 @@ public class Analyzer {
         double total = 0;
         int count = 0;
         RecordIterator iterator = dataset.createIterator();
-
         while (iterator.hasNext()) {
             DataRecord dataRecord = iterator.next();
             try {
@@ -63,7 +61,6 @@ public class Analyzer {
     public static double max(Dataset dataset, int columnIndex) {
         double maxValue = Double.NEGATIVE_INFINITY;
         RecordIterator iterator = dataset.createIterator();
-
         while (iterator.hasNext()) {
             DataRecord dataRecord = iterator.next();
             try {
@@ -72,7 +69,7 @@ public class Analyzer {
                     maxValue = value;
                 }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                ExceptionManager.handleException(e, "la ricerca del valore massimo");
+                ExceptionManager.handleException(e, "the research of the max value");
             }
         }
 
@@ -85,7 +82,6 @@ public class Analyzer {
     public static double min(Dataset dataset, int columnIndex) {
         double minValue = Double.POSITIVE_INFINITY;
         RecordIterator iterator = dataset.createIterator();
-
         while (iterator.hasNext()) {
             DataRecord dataRecord = iterator.next();
             try {
@@ -94,7 +90,7 @@ public class Analyzer {
                     minValue = value;
                 }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                ExceptionManager.handleException(e, "la ricerca del valore minimo");
+                ExceptionManager.handleException(e, "the research of the min value");
             }
         }
 

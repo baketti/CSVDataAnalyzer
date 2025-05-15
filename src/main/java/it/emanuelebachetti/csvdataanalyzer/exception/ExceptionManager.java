@@ -16,7 +16,7 @@ public class ExceptionManager {
      */
     public static void handleException(Exception e, String context) {
         logException(e);
-        throw new RuntimeException("Errore durante " + context + ". Riprovare o contattare il supporto.");
+        throw new RuntimeException("Error: " + context + ".");
     }
 
     // TODO: Log the stack trace on a file
@@ -27,8 +27,8 @@ public class ExceptionManager {
      * @param e the exception to log
      */
     private static void logException(Exception e) {
-        System.err.println("[LOG] Errore interno (" + e.getClass().getSimpleName() + "): " + e.getMessage());
-        e.printStackTrace(); // opzionale per debug
+        System.err.println("[LOG] Internal error (" + e.getClass().getSimpleName() + "): " + e.getMessage());
+        // e.printStackTrace(); // opzionale per debug
     }
 }
 

@@ -1,0 +1,12 @@
+/home/emanueleg/Desktop/UNI/OOP/Final Project/CSVDataAnalyzer/src/main/java/it/emanuelebachetti/csvdataanalyzer/model/DatasetComponent.java
+/home/emanueleg/Desktop/UNI/OOP/Final Project/CSVDataAnalyzer/src/main/java/it/emanuelebachetti/csvdataanalyzer/model/Dataset.java
+/home/emanueleg/Desktop/UNI/OOP/Final Project/CSVDataAnalyzer/src/main/java/it/emanuelebachetti/csvdataanalyzer/iterator/DatasetIterator.java
+/home/emanueleg/Desktop/UNI/OOP/Final Project/CSVDataAnalyzer/src/main/java/it/emanuelebachetti/csvdataanalyzer/model/DataRecord.java
+/home/emanueleg/Desktop/UNI/OOP/Final Project/CSVDataAnalyzer/src/main/java/it/emanuelebachetti/csvdataanalyzer/exception/ExceptionManager.java
+/home/emanueleg/Desktop/UNI/OOP/Final Project/CSVDataAnalyzer/src/main/java/it/emanuelebachetti/csvdataanalyzer/parser/CSV/CSVParseResult.java
+/home/emanueleg/Desktop/UNI/OOP/Final Project/CSVDataAnalyzer/src/main/java/it/emanuelebachetti/csvdataanalyzer/parser/ParserFactory.java
+/home/emanueleg/Desktop/UNI/OOP/Final Project/CSVDataAnalyzer/src/main/java/it/emanuelebachetti/csvdataanalyzer/parser/Parser.java
+/home/emanueleg/Desktop/UNI/OOP/Final Project/CSVDataAnalyzer/src/main/java/it/emanuelebachetti/csvdataanalyzer/iterator/RecordIterator.java
+/home/emanueleg/Desktop/UNI/OOP/Final Project/CSVDataAnalyzer/src/main/java/it/emanuelebachetti/csvdataanalyzer/App.java
+/home/emanueleg/Desktop/UNI/OOP/Final Project/CSVDataAnalyzer/src/main/java/it/emanuelebachetti/csvdataanalyzer/parser/CSV/CSVParser.java
+/home/emanueleg/Desktop/UNI/OOP/Final Project/CSVDataAnalyzer/src/main/java/it/emanuelebachetti/csvdataanalyzer/analyzer/Analyzer.java
