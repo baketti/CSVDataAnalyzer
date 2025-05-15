@@ -1,6 +1,8 @@
 package it.emanuelebachetti.csvdataanalyzer;
 
 import it.emanuelebachetti.csvdataanalyzer.model.*;
+import it.emanuelebachetti.csvdataanalyzer.model.transaction.Transaction;
+import it.emanuelebachetti.csvdataanalyzer.model.transaction.TransactionFactory;
 import it.emanuelebachetti.csvdataanalyzer.parser.*;
 import it.emanuelebachetti.csvdataanalyzer.parser.CSV.CSVParseResult;
 import it.emanuelebachetti.csvdataanalyzer.parser.CSV.validator.CSVStructureValidator;
@@ -14,6 +16,7 @@ import it.emanuelebachetti.csvdataanalyzer.exception.InvalidCSVStructureExceptio
 import it.emanuelebachetti.csvdataanalyzer.exception.ValidationException;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.nio.file.Paths;
 
@@ -32,7 +35,7 @@ public class App {
 
             // 2. Parse CSV file
             File file = new File(
-                    Paths.get("data/sample.csv")
+                    Paths.get("data/invalid.csv")
                             .toAbsolutePath()
                             .toString());
 
@@ -46,6 +49,7 @@ public class App {
             dataset.setHeaderFields(parseResult.getHeader());
 
             List<DataRecord> records = parseResult.getRecords();
+            List<Transaction> transactions = new ArrayList<>();
 
             RecordValidatorHandler validatorChain = TransactionRecordValidatorBuilder.build();
 
@@ -53,6 +57,7 @@ public class App {
                 try {
                     validatorChain.validate(record);
                     dataset.addComponent(record);
+                    transactions.add(TransactionFactory.from(record));
                 } catch (ValidationException e) {
                     System.err.println("[VALIDATION ERROR] " + e.getMessage());
                 }
