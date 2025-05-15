@@ -5,10 +5,13 @@ import it.emanuelebachetti.csvdataanalyzer.parser.*;
 import it.emanuelebachetti.csvdataanalyzer.parser.CSV.CSVParseResult;
 import it.emanuelebachetti.csvdataanalyzer.parser.CSV.validator.CSVStructureValidator;
 import it.emanuelebachetti.csvdataanalyzer.parser.CSV.validator.TransactionCSVValidator;
+import it.emanuelebachetti.csvdataanalyzer.validator.RecordValidatorHandler;
+import it.emanuelebachetti.csvdataanalyzer.validator.TransactionRecordValidatorBuilder;
 // import it.emanuelebachetti.csvdataanalyzer.iterator.*;
 import it.emanuelebachetti.csvdataanalyzer.analyzer.*;
 // import it.emanuelebachetti.csvdataanalyzer.exception.*;
 import it.emanuelebachetti.csvdataanalyzer.exception.InvalidCSVStructureException;
+import it.emanuelebachetti.csvdataanalyzer.exception.ValidationException;
 
 import java.io.File;
 import java.util.List;
@@ -44,8 +47,15 @@ public class App {
 
             List<DataRecord> records = parseResult.getRecords();
 
+            RecordValidatorHandler validatorChain = TransactionRecordValidatorBuilder.build();
+
             for (DataRecord record : records) {
-                dataset.addComponent(record);
+                try {
+                    validatorChain.validate(record);
+                    dataset.addComponent(record);
+                } catch (ValidationException e) {
+                    System.err.println("[VALIDATION ERROR] " + e.getMessage());
+                }
             }
 
             // 4. Display dataset contents
