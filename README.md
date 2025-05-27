@@ -145,7 +145,3 @@ This will run all the tests in the src/test/java directory using JUnit 5.
 - **User-driven Input**: Allow users to select and upload CSV files dynamically via CLI or GUI interface.
 - **Advanced Analytics**: Incorporate more complex statistical computations and visualizations.
 - **Improved User Interaction**: Introduce filtering options, pagination, and querying capabilities to let users choose what data to view and how to analyze it.
-
----
-
-## Author
