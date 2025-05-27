@@ -7,6 +7,7 @@ The project is structured around well-established **software design patterns** a
 
 ## 📁 Project Structure
 
+```plaintext
 src/
 └── main/java/it/emanuelebachetti/csvdataanalyzer/
     ├─ analysis/         # Analysis strategies and dynamic loading
@@ -21,6 +22,7 @@ src/
     │   ├─ CSV/          # CSV parsing and validators
     │   └─ factory/      # Factory Method for parser instantiation
     └─ App.java          # Main entry point
+```
 
 ---
 
@@ -92,6 +94,11 @@ src/
 
 ---
 
+## 📋 Requirements
+
+- Java 21 or higher
+- Maven 3.8.1 or higher
+
 ## ⚙️ How to Run
 
 1. Clone the repository:
@@ -101,13 +108,25 @@ git clone https://github.com/baketti/CSVDataAnalyzer.git
 cd CSVDataAnalyzer
 ```
 
-2. Compile and run (Java 17+):
+2. Compile the project using Maven:
 ```bash 
-javac -d out $(find src -name "*.java")
-java -cp out it.emanuelebachetti.csvdataanalyzer.App
+mvn clean compile
 ```
 
-3. Place your input .csv files in a data/ folder (to be created).
+3. Run the application using Maven:
+```bash 
+mvn exec:java -Dexec.mainClass="it.emanuelebachetti.csvdataanalyzer.App"
+```
+
+---
+
+## 🧪 How to Run Tests
+
+To execute the tests, use the following Maven command:
+```bash 
+mvn test
+```
+This will run all the tests in the src/test/java directory using JUnit 5.
 
 ---
 
@@ -126,10 +145,6 @@ java -cp out it.emanuelebachetti.csvdataanalyzer.App
 - **User-driven Input**: Allow users to select and upload CSV files dynamically via CLI or GUI interface.
 - **Advanced Analytics**: Incorporate more complex statistical computations and visualizations.
 - **Improved User Interaction**: Introduce filtering options, pagination, and querying capabilities to let users choose what data to view and how to analyze it.
-
----
-
-## Testing
 
 ---
 
