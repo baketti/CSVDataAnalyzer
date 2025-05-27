@@ -2,7 +2,7 @@ package it.emanuelebachetti.csvdataanalyzer.model.transaction;
 
 import java.time.LocalDateTime;
 
-public class Transaction {
+public class Transaction { 
 
     private final String transactionId;
     private final LocalDateTime timestamp;

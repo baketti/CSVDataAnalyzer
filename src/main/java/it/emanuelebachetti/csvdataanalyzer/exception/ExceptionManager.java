@@ -1,5 +1,11 @@
 package it.emanuelebachetti.csvdataanalyzer.exception;
 
+import java.util.logging.Logger;
+
+import it.emanuelebachetti.csvdataanalyzer.logging.LoggerConfig;
+
+import java.util.logging.Level;
+
 /**
  * Manages exceptions by logging them and throwing a generic runtime exception
  * with a user-friendly message, shielding internal error details.
@@ -14,27 +20,20 @@ public class ExceptionManager {
      * @param context description of the component or action
      * @throws RuntimeException shielding exception
      */
-    public static void handleException(Exception e, String context) {
-        logException(e);
-        throw new RuntimeException("Error: " + context + ".");
+    public static void handleException(Exception e, String context, Class<?> origin) {
+        System.err.println("[ERROR] An error occurred " + context);
+        logException(e, context, origin);
+        throw new RuntimeException("Error: " + context);
     }
-
-    // TODO: Log the stack trace on a file
 
     /**
      * Logs the internal exception details for diagnostic purposes.
      *
      * @param e the exception to log
      */
-    private static void logException(Exception e) {
-        System.err.println("[LOG] Internal error (" + e.getClass().getSimpleName() + "): " + e.getMessage());
-        // e.printStackTrace(); // opzionale per debug
+    private static void logException(Exception e, String context, Class<?> origin) {
+        Logger logger = LoggerConfig.getLogger(origin);
+        logger.log(Level.SEVERE, context + " - " + e.getClass().getSimpleName() + ": " + e.getMessage(), e);
     }
-}
 
-// TODO
-/*
- * public class CsvParsingException extends Exception { ... }
- * public class InvalidDataFormatException extends RuntimeException { ... }
- * 
- */
+}

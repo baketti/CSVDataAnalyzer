@@ -1,5 +1,6 @@
-package it.emanuelebachetti.csvdataanalyzer.analyzer;
+package it.emanuelebachetti.csvdataanalyzer.analysis;
 
+// only to show iterator usage
 import it.emanuelebachetti.csvdataanalyzer.exception.ExceptionManager;
 import it.emanuelebachetti.csvdataanalyzer.iterator.RecordIterator;
 import it.emanuelebachetti.csvdataanalyzer.model.Dataset;
@@ -9,7 +10,7 @@ import it.emanuelebachetti.csvdataanalyzer.model.DataRecord;
  * The Analyzer class provides statistical operations on a dataset,
  * such as sum, mean, maximum, and minimum of a numeric column.
  */
-public class Analyzer {
+public class AnalyzeWithIterator {
 
     /**
      * Calculates the sum of a numeric column in the dataset.
@@ -27,7 +28,7 @@ public class Analyzer {
                 double value = Double.parseDouble(record.getValueAt(columnIndex));
                 total += value;
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                ExceptionManager.handleException(e, "il calcolo della somma");
+                ExceptionManager.handleException(e, "sum calculation", AnalyzeWithIterator.class);
             }
         }
 
@@ -48,7 +49,7 @@ public class Analyzer {
                 total += value;
                 count++;
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                ExceptionManager.handleException(e, "il calcolo della media");
+                ExceptionManager.handleException(e, "mean calculation", AnalyzeWithIterator.class);
             }
         }
 
@@ -69,7 +70,7 @@ public class Analyzer {
                     maxValue = value;
                 }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                ExceptionManager.handleException(e, "the research of the max value");
+                ExceptionManager.handleException(e, "the research of the max value", AnalyzeWithIterator.class);
             }
         }
 
@@ -90,7 +91,7 @@ public class Analyzer {
                     minValue = value;
                 }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                ExceptionManager.handleException(e, "the research of the min value");
+                ExceptionManager.handleException(e, "the research of the min value", AnalyzeWithIterator.class);
             }
         }
 

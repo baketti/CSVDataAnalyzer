@@ -10,7 +10,8 @@ public interface RecordIterator {
     /**
      * Checks if there are more Records in the collection.
      *
-     * @return {@code true} if more Records are available, {@code false} otherwise
+     * @return {@code true} if more DataRecords are available, {@code false}
+     *         otherwise
      * 
      */
     boolean hasNext();
@@ -18,7 +19,7 @@ public interface RecordIterator {
     /**
      * Returns the next DataRecord in the collection.
      *
-     * @return the next {@code Record}
+     * @return the next {@code DataRecord}
      */
     DataRecord next();
 }

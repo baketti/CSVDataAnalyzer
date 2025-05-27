@@ -60,23 +60,8 @@ public class Dataset implements DatasetComponent {
     @Override
     public void display() {
         System.out.println(this.getHeaderFields().toString());
-        for (DatasetComponent component : components) {
-            component.display();
-        }
-    }
-
-    /**
-     * Returns true if any component matches the given value.
-     * 
-     * @param value the value to search
-     */
-    @Override
-    public boolean matches(String value) {
-        for (DatasetComponent component : components) {
-            if (component.matches(value))
-                return true;
-        }
-        return false;
+        components.stream().forEach(DatasetComponent::display);
+        // Evalute if add iterator for demonstrational purposes
     }
 
     /**

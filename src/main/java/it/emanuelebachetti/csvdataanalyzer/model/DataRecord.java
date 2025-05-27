@@ -41,20 +41,12 @@ public class DataRecord implements DatasetComponent {
     }
 
     /**
-     * Retrieves a value at the specified index in the Record.
+     * Retrieves a value at the specified index within its fields.
      * 
      * @param index the field index
      * @return the value at that index
      */
     public String getValueAt(int index) {
         return fields.get(index);
-    }
-
-    /**
-     * Checks whether any field matches the given value.
-     */
-    @Override
-    public boolean matches(String value) {
-        return fields.contains(value);
     }
 }

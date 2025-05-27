@@ -2,22 +2,24 @@ package it.emanuelebachetti.csvdataanalyzer;
 
 import it.emanuelebachetti.csvdataanalyzer.model.*;
 import it.emanuelebachetti.csvdataanalyzer.model.transaction.Transaction;
-import it.emanuelebachetti.csvdataanalyzer.model.transaction.TransactionFactory;
-import it.emanuelebachetti.csvdataanalyzer.parser.*;
+import it.emanuelebachetti.csvdataanalyzer.model.adapter.*;
 import it.emanuelebachetti.csvdataanalyzer.parser.CSV.CSVParseResult;
 import it.emanuelebachetti.csvdataanalyzer.parser.CSV.validator.CSVStructureValidator;
 import it.emanuelebachetti.csvdataanalyzer.parser.CSV.validator.TransactionCSVValidator;
+import it.emanuelebachetti.csvdataanalyzer.parser.factory.Parser;
+import it.emanuelebachetti.csvdataanalyzer.parser.factory.ParserFactory;
 import it.emanuelebachetti.csvdataanalyzer.validator.RecordValidatorHandler;
 import it.emanuelebachetti.csvdataanalyzer.validator.TransactionRecordValidatorBuilder;
-// import it.emanuelebachetti.csvdataanalyzer.iterator.*;
-import it.emanuelebachetti.csvdataanalyzer.analyzer.*;
-// import it.emanuelebachetti.csvdataanalyzer.exception.*;
+import it.emanuelebachetti.csvdataanalyzer.analysis.*;
+import it.emanuelebachetti.csvdataanalyzer.cli.AnalysisCLI;
 import it.emanuelebachetti.csvdataanalyzer.exception.InvalidCSVStructureException;
-import it.emanuelebachetti.csvdataanalyzer.exception.ValidationException;
+import it.emanuelebachetti.csvdataanalyzer.exception.InvalidDataFormatException;
+import it.emanuelebachetti.csvdataanalyzer.logging.LoggerConfig;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.nio.file.Paths;
 
 /**
@@ -27,7 +29,9 @@ import java.nio.file.Paths;
 public class App {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("=== CSV Data Analyzer ===");
+        final Logger LOGGER = LoggerConfig.getLogger(App.class);
+
+        System.out.println("\n=============== CSV Data Analyzer ===============\n\n");
 
         try {
             // 1. Get parser from factory
@@ -52,35 +56,33 @@ public class App {
             List<Transaction> transactions = new ArrayList<>();
 
             RecordValidatorHandler validatorChain = TransactionRecordValidatorBuilder.build();
+            RecordAdapter<Transaction> adapter = new TransactionAdapter();
 
             for (DataRecord record : records) {
                 try {
                     validatorChain.validate(record);
                     dataset.addComponent(record);
-                    transactions.add(TransactionFactory.from(record));
-                } catch (ValidationException e) {
-                    System.err.println("[VALIDATION ERROR] " + e.getMessage());
+                    transactions.add(adapter.adapt(record));
+                } catch (InvalidDataFormatException e) {
+                    System.err.println("[ERROR] Validation failed: " + e.getMessage());
+                    LOGGER.warning("Validation failed: " + e.getMessage());
                 }
             }
 
             // 4. Display dataset contents
-            System.out.println("\n--- Dataset Content ---");
+            System.out.println("\n--- Dataset Content ---\n");
             dataset.display();
 
-            // 5. Run analysis (e.g., on column 2)
-            int columnIndex = 1;
-            System.out.println("\n--- Statistical Analysis (Column " + columnIndex + ") ---");
-            System.out.println("Sum  : " + Analyzer.sum(dataset, columnIndex));
-            System.out.println("Mean : " + Analyzer.mean(dataset, columnIndex));
-            System.out.println("Min  : " + Analyzer.min(dataset, columnIndex));
-            System.out.println("Max  : " + Analyzer.max(dataset, columnIndex));
+            Analyzer analyzer = Analyzer.getInstance();
+            new AnalysisCLI(analyzer).start(transactions);
 
         } catch (InvalidCSVStructureException e) {
-            System.err.println("Error while CSV validation.");
-            System.err.println("[LOG] Invalid CSV: " + e.getMessage());
+            System.err.println("[ERROR] Invalid CSV structure: " + e.getMessage());
+            LOGGER.warning("Invalid CSV structure: " + e.getMessage());
             System.exit(1);
         } catch (RuntimeException e) {
-            System.err.println(e.getMessage());
+            // System.err.println(e.getMessage());
+            LOGGER.severe("Fatal runtime error: " + e.getMessage());
             System.exit(1);
         }
     }

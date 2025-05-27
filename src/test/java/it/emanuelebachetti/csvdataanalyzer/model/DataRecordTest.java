@@ -32,12 +32,4 @@ class DataRecordTest {
             record.getValueAt(5);
         });
     }
-
-    @Test
-    void shouldMatchCorrectValue() {
-        DataRecord record = new DataRecord(List.of("1", "Alice", "30"));
-
-        assertTrue(record.matches("Alice"));
-        assertFalse(record.matches("Bob"));
-    }
 }

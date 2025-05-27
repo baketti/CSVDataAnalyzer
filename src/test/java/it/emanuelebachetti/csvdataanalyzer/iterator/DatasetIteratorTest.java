@@ -8,6 +8,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.mockito.Mockito;
+
 class DatasetIteratorTest {
 
     @Test
@@ -15,18 +17,9 @@ class DatasetIteratorTest {
         DataRecord r1 = new DataRecord(List.of("1", "Alice"));
         DataRecord r2 = new DataRecord(List.of("2", "Bob"));
 
-        DatasetComponent fakeComponent = new DatasetComponent() {
-            @Override
-            public void display() {
-            }
+        DatasetComponent mockComponent = Mockito.mock(DatasetComponent.class);
 
-            @Override
-            public boolean matches(String value) {
-                return false;
-            }
-        };
-
-        DatasetIterator iterator = new DatasetIterator(List.of(r1, fakeComponent, r2));
+        DatasetIterator iterator = new DatasetIterator(List.of(r1, mockComponent, r2));
 
         assertTrue(iterator.hasNext());
         assertEquals(r1, iterator.next());
@@ -39,18 +32,10 @@ class DatasetIteratorTest {
 
     @Test
     void shouldReturnFalseIfNoDataRecords() {
-        DatasetComponent onlyNonRecord = new DatasetComponent() {
-            @Override
-            public void display() {
-            }
 
-            @Override
-            public boolean matches(String value) {
-                return false;
-            }
-        };
+        DatasetComponent mockComponentWithoutRecords = Mockito.mock(DatasetComponent.class);
 
-        DatasetIterator iterator = new DatasetIterator(List.of(onlyNonRecord));
+        DatasetIterator iterator = new DatasetIterator(List.of(mockComponentWithoutRecords));
 
         assertFalse(iterator.hasNext());
     }

@@ -1,6 +1,7 @@
-package it.emanuelebachetti.csvdataanalyzer.parser;
+package it.emanuelebachetti.csvdataanalyzer.parser.factory;
 
 import it.emanuelebachetti.csvdataanalyzer.parser.CSV.CSVParser;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

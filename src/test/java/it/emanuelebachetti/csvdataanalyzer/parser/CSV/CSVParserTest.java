@@ -28,8 +28,6 @@ class CSVParserTest {
         CSVParser parser = new CSVParser(",");
         File file = new File("src/test/data/empty.csv");
 
-        CSVParseResult result = parser.parse(file);
-
-        assertNull(result);
+        assertThrows(RuntimeException.class, () -> parser.parse(file));
     }
 }

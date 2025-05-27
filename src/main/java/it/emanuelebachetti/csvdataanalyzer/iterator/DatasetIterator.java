@@ -8,7 +8,13 @@ import it.emanuelebachetti.csvdataanalyzer.model.DatasetComponent;
 
 /**
  * A concrete iterator for traversing {@code DatasetComponent} elements
- * and returning only the {@code Record} instances.
+ * and returning only the {@code DataRecord} instances.
+ * 
+ * <p>
+ * The next() method related exception is handled using the
+ * {@link ExceptionManager} to shield internal errors
+ * and prevent system crashes.
+ * </p>
  */
 public class DatasetIterator implements RecordIterator {
 
@@ -25,9 +31,9 @@ public class DatasetIterator implements RecordIterator {
     }
 
     /**
-     * Checks if there are more {@code Record} components in the collection.
+     * Checks if there are more {@code DataRecord} components in the collection.
      *
-     * @return {@code true} if another {@code Record} exists, {@code false}
+     * @return {@code true} if another {@code DataRecord} exists, {@code false}
      *         otherwise
      */
     @Override
@@ -42,17 +48,17 @@ public class DatasetIterator implements RecordIterator {
     }
 
     /**
-     * Returns the next {@code Record} in the collection.
+     * Returns the next {@code DataRecord} in the collection.
      *
-     * @return the next {@code Record}
+     * @return the next {@code DataRecord}
      */
     @Override
     public DataRecord next() {
         try {
             return (DataRecord) components.get(currentIndex++);
         } catch (ClassCastException e) {
-            ExceptionManager.handleException(e, "l’iterazione sul Dataset");
-            return null; // mai raggiunto, ma richiesto dal compilatore
+            ExceptionManager.handleException(e, "Dataset iteration", DatasetIterator.class);
+            return null;
         }
     }
 }

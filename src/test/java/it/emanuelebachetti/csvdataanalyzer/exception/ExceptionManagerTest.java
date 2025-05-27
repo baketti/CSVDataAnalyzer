@@ -4,17 +4,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 class ExceptionManagerTest {
 
     @Test
-    void shouldThrowRuntimeExceptionWithFriendlyMessage() {
-        Exception ex = new IllegalArgumentException("Invalid format");
+    void shouldThrowRuntimeExceptionWithGenericMessage() {
+        Exception ex = new IOException();
 
         RuntimeException thrown = assertThrows(
                 RuntimeException.class,
-                () -> ExceptionManager.handleException(ex, "il parsing"),
-                "Expected RuntimeException");
+                () -> ExceptionManager.handleException(ex, "testing", ExceptionManager.class));
 
-        assertTrue(thrown.getMessage().contains("Errore durante il parsing"));
+        assertEquals("Error: testing", thrown.getMessage());
     }
 }
