@@ -20,7 +20,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 
 /**
  * Main entry point to demonstrate the basic functionalities of the CSV Data
@@ -39,7 +39,7 @@ public class App {
 
             // 2. Parse CSV file
             File file = new File(
-                    Paths.get("data/invalid.csv")
+                    Path.of("data", "sample.csv")
                             .toAbsolutePath()
                             .toString());
 
