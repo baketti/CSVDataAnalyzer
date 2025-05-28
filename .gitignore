@@ -2,7 +2,7 @@
 *.class
 
 # Logs directory
-/logs
+logs/
 
 # BlueJ files
 *.ctxt

@@ -5,6 +5,11 @@ The project is structured around well-established **software design patterns** a
 
 ---
 
+## 📐 Project UML Diagram
+![Factory UML](./UMLDiagrams/ProjectUML.png)
+
+---
+
 ## 📁 Project Structure
 
 ```plaintext
@@ -45,38 +50,46 @@ src/
 ### Factory Method Pattern
 - **Classes**: `ParserFactory`, `Parser<T>`, `CSVParser`
 - **Purpose**: Create parsers dynamically based on file type (`csv`, extensible to `json`, `xml`, etc.)
+![Factory UML](./UMLDiagrams/Factory.png)
 
 ### Composite Pattern
 - **Interface**: `DatasetComponent`
 - **Leaf**: `DataRecord`
 - **Composite**: `Dataset`
 - **Purpose**: Treat single records and record groups uniformly, allowing recursive traversal.
+![Factory UML](./UMLDiagrams/Composite.png)
 
 ### Iterator Pattern (Manual)
 - **Interface**: `RecordIterator`
 - **Implementation**: `DatasetIterator`
 - **Purpose**: Traverse `Dataset` while encapsulating its internal structure.
+![Factory UML](./UMLDiagrams/Iterator.png)
 
 ### Exception Shielding Pattern
 - **Class**: `ExceptionManager`
 - **Purpose**: Log internal errors and rethrow generic messages to shield internal logic from the user.
+![Factory UML](./UMLDiagrams/ExceptionShielding.png)
 
 ### Strategy Pattern
 - **Interface**: `AnalysisStrategy`
 - **Implementations**: `TotalAmountAnalysis`, `AverageAmountAnalysis`, etc.
 - **Purpose**: Enables flexible execution of analysis logic at runtime.
+![Factory UML](./UMLDiagrams/Strategy.png)
 
 ### Chain of Responsibility
 - **Handlers**: `RecordValidatorHandler` and all concrete validators (`TransactionIdValidator`, `AmountValidator`, etc.)
 - **Purpose**: Composable and extendable record-level validation logic.
+![Factory UML](./UMLDiagrams/ChainOfResponsibility.png)
 
 ### Adapter Pattern
 - **Adapters**: `TransactionAdapter`, `RecordAdapter`
 - **Purpose**: Converts `DataRecord` into typed `Transaction` objects.
+![Factory UML](./UMLDiagrams/Adapter.png)
 
 ### Singleton
 - **Class**: `Analyzer`
 - **Purpose**:  Ensures a single configurable `Analyzer` is used during runtime.
+![Factory UML](./UMLDiagrams/Singleton.png)
 
 --- 
 
