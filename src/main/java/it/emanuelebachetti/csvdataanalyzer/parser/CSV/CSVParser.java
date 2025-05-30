@@ -61,7 +61,8 @@ public class CSVParser<T> implements Parser<CSVParseResult> {
             }
             parseResult.setRecords(dataRecords);
         } catch (FileNotFoundException e) {
-            ExceptionManager.handleException(e, ": CSV file not found", CSVParser.class);
+            ExceptionManager.handleException(e, ": CSV file '" + file.getName() + "' not found",
+                    CSVParser.class);
         } catch (IOException | ArrayIndexOutOfBoundsException e) {
             ExceptionManager.handleException(e, ": CSV file parsing", CSVParser.class);
         } catch (NullPointerException e) {
