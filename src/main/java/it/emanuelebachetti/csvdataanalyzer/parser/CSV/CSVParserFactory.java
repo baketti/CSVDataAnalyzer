@@ -1,6 +1,5 @@
 package it.emanuelebachetti.csvdataanalyzer.parser.CSV;
 
-import it.emanuelebachetti.csvdataanalyzer.parser.factory.Parser;
 import it.emanuelebachetti.csvdataanalyzer.parser.factory.ParserFactory;
 
 /**
@@ -27,9 +26,8 @@ import it.emanuelebachetti.csvdataanalyzer.parser.factory.ParserFactory;
  */
 public class CSVParserFactory extends ParserFactory {
 
-    @SuppressWarnings("unchecked")
     @Override
-    public Parser<CSVParseResult> createParser() {
+    public CSVParser createParser() {
         return new CSVParser(",");
     }
 }

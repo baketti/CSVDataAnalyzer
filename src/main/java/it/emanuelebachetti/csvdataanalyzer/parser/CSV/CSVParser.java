@@ -25,7 +25,7 @@ import it.emanuelebachetti.csvdataanalyzer.parser.factory.Parser;
  * maintain clean separation of concerns and ensure safe user feedback.
  * </p>
  */
-public class CSVParser<T> implements Parser<CSVParseResult> {
+public class CSVParser implements Parser<CSVParseResult> {
 
     /** The delimiter used to split CSV fields (e.g., comma). */
     private String delimiter;
