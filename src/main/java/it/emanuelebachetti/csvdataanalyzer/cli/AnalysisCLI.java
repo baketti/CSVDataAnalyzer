@@ -72,7 +72,7 @@ public class AnalysisCLI {
                             .severe("Analysis execution failed: " + e.getMessage());
                 }
             } else if (choice.equals("0")) {
-                System.out.println("Exiting analysis...");
+                System.out.println("Thanks for using CSV Data Analyzer!");
                 exit = true;
             } else {
                 System.out.println("Invalid option.");
@@ -85,7 +85,7 @@ public class AnalysisCLI {
     /** Displays the list of available analysis options to the user. */
     private void printMenu() {
         System.out.print("""
-                \n=== Transaction Analysis Menu ===\n
+                \n\n===== Transactions Analysis Menu =====\n
                 1. Total amount of all transactions
                 2. Average transaction amount
                 3. Count by status

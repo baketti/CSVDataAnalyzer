@@ -58,6 +58,7 @@ public class Analyzer {
     public void executeAnalysis(List<Transaction> transactions) {
         if (strategy == null)
             throw new IllegalStateException("Strategy not set.");
+        System.out.println("\n======== Analysis Result ========\n");
         strategy.analyze(transactions);
     }
 }

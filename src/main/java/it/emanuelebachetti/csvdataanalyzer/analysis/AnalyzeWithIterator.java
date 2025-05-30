@@ -9,6 +9,9 @@ import it.emanuelebachetti.csvdataanalyzer.model.DataRecord;
 /**
  * The Analyzer class provides statistical operations on a dataset,
  * such as sum, mean, maximum, and minimum of a numeric column.
+ * 
+ * PS: this class is not really used! It was the first {@link Analyzer}
+ * implementation; it's to demonstrate the {@link Iterator} usage only;
  */
 public class AnalyzeWithIterator {
 
