@@ -72,7 +72,7 @@ public class AnalysisCLI {
                             .severe("Analysis execution failed: " + e.getMessage());
                 }
             } else if (choice.equals("0")) {
-                System.out.println("Thanks for using CSV Data Analyzer!");
+                System.out.println("\nThanks for using CSV Data Analyzer!\n");
                 exit = true;
             } else {
                 System.out.println("Invalid option.");

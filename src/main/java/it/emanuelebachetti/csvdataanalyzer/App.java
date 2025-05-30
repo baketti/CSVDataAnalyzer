@@ -39,7 +39,7 @@ public class App {
 
             // 2. Parse CSV file
             File file = new File(
-                    Path.of("data", "sample.csv")
+                    Path.of("data", "transactions.csv")
                             .toAbsolutePath()
                             .toString());
 
