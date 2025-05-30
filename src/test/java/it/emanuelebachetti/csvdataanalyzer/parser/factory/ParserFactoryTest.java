@@ -1,6 +1,7 @@
 package it.emanuelebachetti.csvdataanalyzer.parser.factory;
 
 import it.emanuelebachetti.csvdataanalyzer.parser.CSV.CSVParser;
+import it.emanuelebachetti.csvdataanalyzer.parser.CSV.CSVParserFactory;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,19 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class ParserFactoryTest {
 
     @Test
-    void shouldReturnCSVParserWhenTypeIsCsv() {
-        Parser<?> parser = ParserFactory.getParser("csv");
-        assertNotNull(parser, "Parser should not be null");
-        assertTrue(parser instanceof CSVParser, "Parser should be an instance of CSVParser");
-    }
-
-    @Test
-    void shouldThrowExceptionForUnsupportedParserType() {
-        IllegalArgumentException thrown = assertThrows(
-                IllegalArgumentException.class,
-                () -> ParserFactory.getParser("json"),
-                "Expected getParser(\"json\") to throw");
-
-        assertTrue(thrown.getMessage().contains("Parser type not supported"));
+    void shouldReturnCSVParserInstance() {
+        CSVParserFactory factory = new CSVParserFactory();
+        Parser<?> parser = factory.createParser();
+        assertNotNull(parser);
+        assertTrue(parser instanceof CSVParser);
     }
 }
