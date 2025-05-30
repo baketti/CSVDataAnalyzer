@@ -16,6 +16,6 @@ public class AverageAmountAnalysis implements AnalysisStrategy {
                 .sum();
 
         double average = total / transactions.size();
-        System.out.println("[ANALYSIS] Average transaction amount: " + average);
+        System.out.println("Average transaction amount: " + average);
     }
 }

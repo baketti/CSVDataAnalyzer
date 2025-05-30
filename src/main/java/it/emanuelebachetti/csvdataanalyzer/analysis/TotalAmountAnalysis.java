@@ -16,6 +16,6 @@ public class TotalAmountAnalysis implements AnalysisStrategy {
                 .mapToDouble(Transaction::getAmount)
                 .sum();
 
-        System.out.println("[ANALYSIS] Total amount transacted: " + total);
+        System.out.println("Total amount transacted: " + total);
     }
 }

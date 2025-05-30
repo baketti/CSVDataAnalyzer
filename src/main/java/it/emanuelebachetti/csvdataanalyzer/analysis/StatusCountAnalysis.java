@@ -17,7 +17,7 @@ public class StatusCountAnalysis implements AnalysisStrategy {
         Map<String, Long> statusCounts = transactions.stream()
                 .collect(Collectors.groupingBy(Transaction::getStatus, Collectors.counting()));
 
-        System.out.println("[ANALYSIS] Transaction count by status:");
+        System.out.println("Transaction count by status:");
         statusCounts.forEach((status, count) -> System.out.println("  " + status + ": " + count));
     }
 }

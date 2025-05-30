@@ -19,7 +19,7 @@ public class TotalAmountPerUserAnalysis implements AnalysisStrategy {
                         Transaction::getUserId,
                         Collectors.summingDouble(Transaction::getAmount)));
 
-        System.out.println("[ANALYSIS] Total amount per user:");
+        System.out.println("Total amount per user:");
         totalPerUser.forEach((userId, total) -> System.out.println("  " + userId + ": " + total));
     }
 }

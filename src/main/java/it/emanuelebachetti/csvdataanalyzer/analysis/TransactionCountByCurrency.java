@@ -18,7 +18,7 @@ public class TransactionCountByCurrency implements AnalysisStrategy {
                         Transaction::getCurrency,
                         Collectors.counting()));
 
-        System.out.println("[ANALYSIS] Transaction count by currency:");
+        System.out.println("Transaction count by currency:");
         countByCurrency.forEach((currency, count) -> System.out.println("  " + currency + ": " + count));
     }
 }
