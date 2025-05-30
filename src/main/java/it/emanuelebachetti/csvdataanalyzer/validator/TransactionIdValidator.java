@@ -25,9 +25,13 @@ public class TransactionIdValidator extends RecordValidator {
      */
     @Override
     public void validate(DataRecord record) throws InvalidDataFormatException {
-        String id = record.getValueAt(0);
-        if (id == null || id.isBlank() || !id.matches("^TXN\\d+$")) {
-            throw new InvalidDataFormatException("Transaction ID is missing or blank.");
+        try {
+            String id = record.getValueAt(0);
+            if (id == null || id.isBlank() || !id.matches("^TXN\\d+$")) {
+                throw new InvalidDataFormatException("Transaction ID is missing or blank.");
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidDataFormatException("Missing transaction_id field.", e);
         }
         validateNext(record);
     }

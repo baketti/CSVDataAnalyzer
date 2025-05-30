@@ -33,8 +33,10 @@ public class TimestampValidator extends RecordValidator {
     public void validate(DataRecord record) throws InvalidDataFormatException {
         try {
             LocalDateTime.parse(record.getValueAt(1));
-        } catch (DateTimeParseException | IndexOutOfBoundsException e) {
+        } catch (DateTimeParseException e) {
             throw new InvalidDataFormatException("Invalid timestamp format.", e);
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidDataFormatException("Missing timestamp field.", e);
         }
         validateNext(record);
     }

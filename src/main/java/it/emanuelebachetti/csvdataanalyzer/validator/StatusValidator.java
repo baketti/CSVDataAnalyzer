@@ -26,9 +26,13 @@ public class StatusValidator extends RecordValidator {
      */
     @Override
     public void validate(DataRecord record) throws InvalidDataFormatException {
-        String status = record.getValueAt(5).toLowerCase();
-        if (!VALID_STATUSES.contains(status)) {
-            throw new InvalidDataFormatException("Invalid status value: " + status);
+        try {
+            String status = record.getValueAt(5).toLowerCase();
+            if (!VALID_STATUSES.contains(status)) {
+                throw new InvalidDataFormatException("Invalid status value: " + status);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidDataFormatException("Missing status field.", e);
         }
         validateNext(record);
     }
