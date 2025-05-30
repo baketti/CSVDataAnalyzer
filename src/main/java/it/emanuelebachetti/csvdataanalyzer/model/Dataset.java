@@ -3,6 +3,8 @@ package it.emanuelebachetti.csvdataanalyzer.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.emanuelebachetti.csvdataanalyzer.analysis.AnalyzeWithIterator;
+import it.emanuelebachetti.csvdataanalyzer.exception.ExceptionManager;
 import it.emanuelebachetti.csvdataanalyzer.iterator.DatasetIterator;
 import it.emanuelebachetti.csvdataanalyzer.iterator.RecordIterator;
 
@@ -60,8 +62,10 @@ public class Dataset implements DatasetComponent {
     @Override
     public void display() {
         System.out.println(this.getHeaderFields().toString());
-        components.stream().forEach(DatasetComponent::display);
-        // Evalute if add iterator for demonstrational purposes
+        RecordIterator iterator = this.createIterator();
+        while (iterator.hasNext()) {
+            iterator.next().display();
+        }
     }
 
     /**

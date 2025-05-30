@@ -25,7 +25,7 @@ import it.emanuelebachetti.csvdataanalyzer.parser.factory.Parser;
  * maintain clean separation of concerns and ensure safe user feedback.
  * </p>
  */
-public class CSVParser implements Parser<CSVParseResult> {
+public class CSVParser<T> implements Parser<CSVParseResult> {
 
     /** The delimiter used to split CSV fields (e.g., comma). */
     private String delimiter;
@@ -53,10 +53,10 @@ public class CSVParser implements Parser<CSVParseResult> {
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line = reader.readLine();
-            List<String> CSVheader = Arrays.asList(line.split(this.delimiter));
+            List<String> CSVheader = List.of(line.split(this.delimiter));
             parseResult.setHeader(CSVheader);
             while ((line = reader.readLine()) != null) {
-                List<String> fields = Arrays.asList(line.split(delimiter));
+                List<String> fields = List.of(line.split(delimiter));
                 dataRecords.add(new DataRecord(fields));
             }
             parseResult.setRecords(dataRecords);

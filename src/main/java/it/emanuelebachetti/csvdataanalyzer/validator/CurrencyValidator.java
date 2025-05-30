@@ -36,7 +36,6 @@ public class CurrencyValidator extends RecordValidator {
         } catch (IndexOutOfBoundsException e) {
             throw new InvalidDataFormatException("Missing currency field.", e);
         }
-
         validateNext(record);
     }
 }
