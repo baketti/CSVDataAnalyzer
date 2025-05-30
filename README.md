@@ -1,6 +1,6 @@
 # 📊 CSV Data Analyzer
 
-**CSV Data Analyzer** is a Java-based application designed to parse, validate, transform, and analyze tabular data from CSV files using a clean, extensible, and object-oriented architecture.  
+**CSV Data Analyzer** is a Java-based application designed to parse, validate, transform, and analyze tabular data from CSV files using a clean, extensible, and object-oriented architecture. It provides a user-friendly CLI interface for selecting and executing analysis strategies, with results displayed directly in the console.
 The project is structured around well-established **software design patterns** and focuses on **modularity, separation of concerns**, and **robust exception and validation handling**.
 
 ---
@@ -24,8 +24,9 @@ src/
     │   ├─ adapter/      # Adapter pattern for transforming DataRecord to Transaction
     │   └─ transaction/  # Transaction domain model
     ├─ parser/
-    │   ├─ CSV/          # CSV parsing and validators
+    │   ├─ CSV/          # CSV parsing and structure validators
     │   └─ factory/      # Factory Method for parser instantiation
+    ├─ validator/        # Chain of Responsibility for record-level validation
     └─ App.java          # Main entry point
 ```
 
@@ -34,7 +35,7 @@ src/
 ## ✅ Features
 
 - ✅ CSV file parsing using a flexible factory-based architecture
-- ✅ Structured data representation with the Composite pattern
+- ✅ Structured data organization and representation with the Composite pattern
 - ✅ Manual Iterator for accessing dataset records
 - ✅ Statistical and domain-specific analysis using the Strategy pattern
 - ✅ Exception shielding and logging of all critical errors (console and file)
@@ -48,69 +49,69 @@ src/
 ## 💡 Design Patterns Used
 
 ### Factory Method Pattern
-- **Classes**: `ParserFactory`, `Parser<T>`, `CSVParser`
-- **Purpose**: Create parsers dynamically based on file type (`csv`, extensible to `json`, `xml`, etc.)
+- **Classes**: `ParserFactory`, `Parser<T>`, `CSVParser`, `CSVParserFactory`
+- **Purpose**: Creates parsers based on data file type. Allows to avoid complex logical expressions (e.g switch-case or if-else statements) mantaining Open/Closed principle. Designed to be extensible to `json`, `xml`, etc.
 ![Factory UML](./UMLDiagrams/Factory.png)
 
 ### Composite Pattern
 - **Interface**: `DatasetComponent`
 - **Leaf**: `DataRecord`
 - **Composite**: `Dataset`
-- **Purpose**: Treat single records and record groups uniformly, allowing recursive traversal.
+- **Purpose**: Stores CSV rows. Treats single records and record groups uniformly. Displays records in the console.
 ![Composite UML](./UMLDiagrams/Composite.png)
 
 ### Iterator Pattern (Manual)
 - **Interface**: `RecordIterator`
 - **Implementation**: `DatasetIterator`
-- **Purpose**: Traverse `Dataset` while encapsulating its internal structure.
+- **Purpose**: Iterates through the components of `Dataset`, providing sequential access while hiding its internal structure and implementation details.
 ![Iterator UML](./UMLDiagrams/Iterator.png)
 
 ### Exception Shielding Pattern
 - **Class**: `ExceptionManager`
-- **Purpose**: Log internal errors and rethrow generic messages to shield internal logic from the user.
+- **Purpose**: Logs critical internal errors and rethrows generic messages to shield internal program logic from the user.
 ![Exception Shielding UML](./UMLDiagrams/ExceptionShielding.png)
 
 ### Strategy Pattern
 - **Interface**: `AnalysisStrategy`
 - **Implementations**: `TotalAmountAnalysis`, `AverageAmountAnalysis`, etc.
-- **Purpose**: Enables flexible execution of analysis logic at runtime.
+- **Purpose**: Enables flexible choice and execution of analysis at runtime, avoiding complex conditional logic and promoting extensibility for adding new analysis strategies.
 ![Strategy UML](./UMLDiagrams/Strategy.png)
 
 ### Chain of Responsibility
 - **Handlers**: `RecordValidatorHandler` and all concrete validators (`TransactionIdValidator`, `AmountValidator`, etc.)
-- **Purpose**: Composable and extendable record-level validation logic.
+- **Purpose**: Composable and extendable record-level validation logic, allowing dynamic chaining of validators to handle complex validation scenarios while maintaining modularity and separation of concerns.
 ![Chain of Responsibility UML](./UMLDiagrams/ChainOfResponsibility.png)
 
 ### Adapter Pattern
 - **Adapters**: `TransactionAdapter`, `RecordAdapter`
-- **Purpose**: Converts `DataRecord` into typed `Transaction` objects.
+- **Purpose**: Converts `DataRecord` into typed `Transaction` objects, enabling seamless integration between components that use different interfaces.
 ![Adapter UML](./UMLDiagrams/Adapter.png)
 
 ### Singleton
 - **Class**: `Analyzer`
-- **Purpose**:  Ensures a single configurable `Analyzer` is used during runtime.
+- **Purpose**: Ensures that a single `Analyzer` instance is created and used during runtime, providing centralized control and preventing redundant instantiations.
 ![Singleton UML](./UMLDiagrams/Singleton.png)
 
 --- 
 
 ## Technologies Used
 
-- **Java Collections Framework** – Used for dynamic data storage (`List`, `Map`, etc.)
-- **Generics** – Ensures type safety and flexibility in interfaces like `Parser`<T>
-- **Java I/O** – Core file reading/writing functionalities for parsing CSV files
-- **Logging (java.util.logging)** – Logs errors to both console and file with configurable levels
-- **Stream API & Lambdas** – Used in analysis strategies for data aggregation and filtering
-- **Reflection** – Enables dynamic strategy loading at runtime based on user input
-- **JUnit** – Unit testing framework used to verify the correctness of business logic and application components through automated tests
-- **Mockito** – Used for mocking dependencies in some test cases
-- **Inversion of Control** – Promotes loose coupling (i.e., decoupling the creation and selection of analysis strategies from their execution context) by delegating the decision of which strategy to use to the consuming component (e.g., `AnalysisCLI`), rather than hardcoding dependencies
+- **Java Collections Framework** – Used for dynamic data storage (`List`, `Map`, etc.).
+- **Generics** – Ensures type safety and flexibility in interfaces like `Parser`<T>.
+- **Java I/O** – Core file reading/writing functionalities for parsing CSV files.
+- **Logging (java.util.logging)** – Logs errors to both console and file with configurable levels.
+- **Stream API & Lambdas** – Used in analysis strategies for data aggregation and filtering.
+- **Reflection** – Enables dynamic strategy loading at runtime based on user input.
+- **JUnit** – Unit testing framework used to verify the correctness of business logic and application components through automated tests.
+- **Mockito** – Used for mocking dependencies in some test cases.
+- **Inversion of Control** – Promotes loose coupling (decoupling the creation and selection of analysis strategies from their execution context) by delegating the decision of which strategy to use to the consuming component (e.g., `AnalysisCLI`), rather than hardcoding dependencies.
 
 ---
 
 ## 📋 Requirements
 
-- Java 21 or higher
-- Maven 3.8.1 or higher
+- Java 21 or higher;
+- Maven 3.8.1 or higher;
 
 ## ⚙️ How to Run
 
@@ -139,7 +140,7 @@ To execute the tests, use the following Maven command:
 ```bash 
 mvn test
 ```
-This will run all the tests in the src/test/java directory using JUnit 5.
+This will run all the tests in the `src/test/java` directory using JUnit 5.
 
 ---
 
@@ -148,7 +149,7 @@ This will run all the tests in the src/test/java directory using JUnit 5.
 ### Known Limitations
 
 - **CSV-only Support**: The application currently only supports CSV files. It cannot parse or analyze data from other formats such as JSON or XML.
-- **Strict CSV Structure**: The CSV input must strictly follow a predefined schema, with required headers such as `transaction_id`, `timestamp`, `user_id`, etc. If the structure does not match, the program stops its execution.
+- **Strict CSV Structure**: The CSV input must strictly follow a predefined schema, with required headers such as `transaction_id`, `timestamp`, `user_id`, etc. If the structure does not match, the CSV document is considered invalid and the program stops its execution.
 - **Fixed Dataset**: Users cannot upload or select custom CSV files at runtime. The application only operates on a hardcoded file path embedded in the codebase.
 - **Basic Analytics**: The current analysis strategies are minimal and intended for demonstration purposes only. There is no support for advanced filtering, custom queries, or data visualization.
 
