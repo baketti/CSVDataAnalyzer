@@ -51,6 +51,7 @@ src/
 ### Factory Method Pattern
 - **Classes**: `ParserFactory`, `Parser<T>`, `CSVParser`, `CSVParserFactory`
 - **Purpose**: Creates parsers based on data file type. Allows to avoid complex logical expressions (e.g switch-case or if-else statements) mantaining Open/Closed principle. Designed to be extensible to `json`, `xml`, etc.
+
 ![Factory UML](./UMLDiagrams/Factory.png)
 
 ### Composite Pattern
@@ -58,38 +59,45 @@ src/
 - **Leaf**: `DataRecord`
 - **Composite**: `Dataset`
 - **Purpose**: Stores CSV rows. Treats single records and record groups uniformly. Displays records in the console.
+
 ![Composite UML](./UMLDiagrams/Composite.png)
 
 ### Iterator Pattern (Manual)
 - **Interface**: `RecordIterator`
 - **Implementation**: `DatasetIterator`
 - **Purpose**: Iterates through the components of `Dataset`, providing sequential access while hiding its internal structure and implementation details.
+
 ![Iterator UML](./UMLDiagrams/Iterator.png)
 
 ### Exception Shielding Pattern
 - **Class**: `ExceptionManager`
 - **Purpose**: Logs critical internal errors and rethrows generic messages to shield internal program logic from the user.
+
 ![Exception Shielding UML](./UMLDiagrams/ExceptionShielding.png)
 
 ### Strategy Pattern
 - **Interface**: `AnalysisStrategy`
 - **Implementations**: `TotalAmountAnalysis`, `AverageAmountAnalysis`, etc.
 - **Purpose**: Enables flexible choice and execution of analysis at runtime, avoiding complex conditional logic and promoting extensibility for adding new analysis strategies.
+
 ![Strategy UML](./UMLDiagrams/Strategy.png)
 
 ### Chain of Responsibility
 - **Handlers**: `RecordValidatorHandler` and all concrete validators (`TransactionIdValidator`, `AmountValidator`, etc.)
 - **Purpose**: Composable and extendable record-level validation logic, allowing dynamic chaining of validators to handle complex validation scenarios while maintaining modularity and separation of concerns.
+
 ![Chain of Responsibility UML](./UMLDiagrams/ChainOfResponsibility.png)
 
 ### Adapter Pattern
 - **Adapters**: `TransactionAdapter`, `RecordAdapter`
 - **Purpose**: Converts `DataRecord` into typed `Transaction` objects, enabling seamless integration between components that use different interfaces.
+
 ![Adapter UML](./UMLDiagrams/Adapter.png)
 
 ### Singleton
 - **Class**: `Analyzer`
 - **Purpose**: Ensures that a single `Analyzer` instance is created and used during runtime, providing centralized control and preventing redundant instantiations.
+
 ![Singleton UML](./UMLDiagrams/Singleton.png)
 
 --- 
