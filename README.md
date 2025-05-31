@@ -104,7 +104,7 @@ src/
 
 --- 
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - **Java Collections Framework** – Used for dynamic data storage (`List`, `Map`, etc.).
 - **Generics** – Ensures type safety and flexibility in interfaces like `Parser`<T>.
@@ -154,7 +154,7 @@ This will run all the tests in the `src/test/java` directory using JUnit 5.
 
 ---
 
-## Known Limitations and Future Work
+## 🚧 Known Limitations and Future Work
 
 ### Known Limitations
 
