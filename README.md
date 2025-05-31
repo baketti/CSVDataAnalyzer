@@ -38,12 +38,14 @@ src/
 - ✅ Structured data organization and representation with the Composite pattern
 - ✅ Manual Iterator for accessing dataset records
 - ✅ Statistical and domain-specific analysis using the Strategy pattern
-- ✅ Exception shielding and logging of all critical errors (console and file)
-- ✅ Centralized validation of CSV structure and content using Chain of Responsibility
+- ✅ Exception shielding and logging of all critical errors, ensuring centralized error handling and user-friendly feedback
+- ✅ Configurable logging system for tracking errors and application events, with output directed to a `.log` file stored in the `logs` directory
+- ✅ Centralized validation of CSV content using Chain of Responsibility
 - ✅ Support for field transformation via Adapter pattern
 - ✅ Dynamic loading of strategies using Reflection
+- ✅ Inversion of Control (IoC) to delegate decision-making about component behavior to the consuming components, enabling flexibility and modularity
 - ✅ CLI interface for analysis selection and execution
-
+- ✅ Predefined dataset for demonstration purposes
 ---
 
 ## 💡 Design Patterns Used
@@ -106,13 +108,13 @@ src/
 
 - **Java Collections Framework** – Used for dynamic data storage (`List`, `Map`, etc.).
 - **Generics** – Ensures type safety and flexibility in interfaces like `Parser`<T>.
-- **Java I/O** – Core file reading/writing functionalities for parsing CSV files.
+- **Java I/O** – Core file reading functionalities for parsing CSV files.
 - **Logging (java.util.logging)** – Logs errors to both console and file with configurable levels.
 - **Stream API & Lambdas** – Used in analysis strategies for data aggregation and filtering.
 - **Reflection** – Enables dynamic strategy loading at runtime based on user input.
 - **JUnit** – Unit testing framework used to verify the correctness of business logic and application components through automated tests.
 - **Mockito** – Used for mocking dependencies in some test cases.
-- **Inversion of Control** – Promotes loose coupling (decoupling the creation and selection of analysis strategies from their execution context) by delegating the decision of which strategy to use to the consuming component (e.g., `AnalysisCLI`), rather than hardcoding dependencies.
+- **Inversion of Control** – Promotes loose coupling (decoupling the creation and selection of analysis strategies from their execution context) by delegating the decision of which strategy to load and use to the consuming component (e.g., `AnalysisCLI`), rather than hardcoding dependencies.
 
 ---
 
