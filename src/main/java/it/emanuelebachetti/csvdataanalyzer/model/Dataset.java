@@ -3,8 +3,6 @@ package it.emanuelebachetti.csvdataanalyzer.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.emanuelebachetti.csvdataanalyzer.analysis.AnalyzeWithIterator;
-import it.emanuelebachetti.csvdataanalyzer.exception.ExceptionManager;
 import it.emanuelebachetti.csvdataanalyzer.iterator.DatasetIterator;
 import it.emanuelebachetti.csvdataanalyzer.iterator.RecordIterator;
 
