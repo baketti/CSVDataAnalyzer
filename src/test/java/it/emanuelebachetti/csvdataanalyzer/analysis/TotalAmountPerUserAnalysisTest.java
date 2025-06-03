@@ -8,7 +8,7 @@ import java.io.PrintStream;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TotalAmountPerUserAnalysisTest {
 
@@ -30,13 +30,19 @@ class TotalAmountPerUserAnalysisTest {
         List<Transaction> transactions = List.of(
                 new Transaction("t1", LocalDateTime.now(), "u1", 100.0, "EUR", "completed"),
                 new Transaction("t2", LocalDateTime.now(), "u2", 200.0, "USD", "completed"),
-                new Transaction("t3", LocalDateTime.now(), "u1", 50.0, "EUR", "completed"));
+                new Transaction("t3", LocalDateTime.now(), "u1", 50.0, "EUR", "completed"),
+                new Transaction("t4", LocalDateTime.now(), "u1", 75.0, "USD", "completed"));
 
         AnalysisStrategy strategy = new TotalAmountPerUserAnalysis();
         strategy.analyze(transactions);
 
-        String printed = output.toString().trim();
-        assertTrue(printed.contains("u1: 150.0"));
-        assertTrue(printed.contains("u2: 200.0"));
+        String result = output.toString().trim();
+        String expectedOutput = """
+                Total amount per user:
+                u1: EUR 150.0
+                u1: USD 75.0
+                u2: USD 200.0
+                """.trim();
+        assertEquals(expectedOutput, result);
     }
 }
