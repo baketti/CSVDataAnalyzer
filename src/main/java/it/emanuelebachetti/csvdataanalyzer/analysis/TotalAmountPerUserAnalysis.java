@@ -7,19 +7,24 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Groups transactions by user ID and calculates the total amount spent by each
- * user.
+ * Groups completed transactions by user ID (and currency) and calculates the
+ * total amount spent by each user.
  */
 public class TotalAmountPerUserAnalysis implements AnalysisStrategy {
 
     @Override
     public void analyze(List<Transaction> transactions) {
-        Map<String, Double> totalPerUser = transactions.stream()
+        Map<String, Map<String, Double>> totalPerUser = transactions.stream()
+                .filter(transaction -> "completed".equalsIgnoreCase(transaction.getStatus()))
                 .collect(Collectors.groupingBy(
                         Transaction::getUserId,
-                        Collectors.summingDouble(Transaction::getAmount)));
+                        Collectors.groupingBy(
+                                Transaction::getCurrency,
+                                Collectors.summingDouble(Transaction::getAmount))));
 
         System.out.println("Total amount per user:");
-        totalPerUser.forEach((userId, total) -> System.out.println("  " + userId + ": " + total));
+        totalPerUser.forEach((userId, currencyMap) -> {
+            currencyMap.forEach((currency, total) -> System.out.println(userId + ": " + currency + " " + total));
+        });
     }
 }
