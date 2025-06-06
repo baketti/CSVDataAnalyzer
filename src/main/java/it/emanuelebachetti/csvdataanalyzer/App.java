@@ -74,6 +74,13 @@ public class App {
                 }
             }
 
+            // Check if there is at least a valid transaction
+            if (transactions.isEmpty()) {
+                System.err.println("[VALIDATION ERROR] No valid transactions found. Exiting program.");
+                LOGGER.warning("Validation failed: no valid transactions found.");
+                System.exit(1);
+            }
+
             // 8. Display dataset content
             System.out.println("\n======================== Dataset Content =======================\n");
             dataset.display();
